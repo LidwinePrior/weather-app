@@ -1,0 +1,94 @@
+body {
+  background-color: #fffffe;
+  color: #2d334a;
+}
+
+h1 {
+  text-align: center;
+  color: #272343;
+}
+
+.send {
+  background-color: #ffd803;
+  border-radius: 10px;
+}
+
+#weather {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+#weather .weatherOfDay {
+  width: 100%;
+  height: 350px;
+  border-radius: 20px;
+  background-color: #bae8e8;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  -moz-column-gap: 10px;
+       column-gap: 10px;
+  text-align: center;
+}
+#weather .weatherOfDay img {
+  width: 25%;
+  grid-column: 1/3;
+  grid-row: 1/2;
+  display: flex;
+  justify-self: flex-end;
+  margin-right: 20px;
+}
+#weather .weatherOfDay .city {
+  grid-column: 1/3;
+  grid-row: 2/3;
+  font-size: 25px;
+  margin: 0;
+}
+#weather .weatherOfDay .temp {
+  grid-column: 1/3;
+  grid-row: 3/4;
+}
+#weather .weatherOfDay .description {
+  grid-column: 1/3;
+  grid-row: 4/5;
+}
+#weather .weatherOfDay .min {
+  grid-column: 1/2;
+  grid-row: 5/6;
+  text-align: end;
+}
+#weather .weatherOfDay .max {
+  grid-column: 2/3;
+  grid-row: 5/6;
+  text-align: start;
+}
+
+#weatherFIveDays .daily {
+  height: 150px;
+  border-radius: 20px;
+  background-color: #bae8e8;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  padding-left: 25px;
+  margin-bottom: 10px;
+}
+#weatherFIveDays .daily .day {
+  display: flex;
+  align-items: end;
+  grid-column: 1/2;
+  grid-row: 1/2;
+}
+#weatherFIveDays .daily .temperature {
+  display: flex;
+  align-items: start;
+  grid-column: 1/2;
+  grid-row: 2/3;
+}
+#weatherFIveDays .daily img {
+  grid-column: 2/3;
+  grid-row: 1/3;
+  width: 80%;
+  display: flex;
+  align-self: center;
+}/*# sourceMappingURL=index.css.map */
