@@ -1,10 +1,15 @@
 const apiKey = "8ea7f0a4d42086c0871ea1344169014e";
-const weather = document.getElementById('weather');
+const weather = document.getElementById('weatherMore');
 let inputTxt = document.getElementById('city')
 const sendBtn = document.querySelector(".send");
 
+
 sendBtn.addEventListener("click", () => {
     let city = inputTxt.value;
+
+    const weatherContainer = document.createElement('div');
+    weatherContainer.classList.add('weatherContainer');
+
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=fr`)
     .then((response) => response.json())
     .then((data) => {
@@ -44,36 +49,31 @@ sendBtn.addEventListener("click", () => {
         icon.setAttribute('src', "https://openweathermap.org/img/w/" +imgIcon + ".png");
 
      
-        weatherOfDay.appendChild(icon);
+
         weatherOfDay.appendChild(cityName);
+        weatherOfDay.appendChild(icon);
         weatherOfDay.appendChild(temperature);
         weatherOfDay.appendChild(description);
         weatherOfDay.appendChild(minimumT);
         weatherOfDay.appendChild(maximumT);
 
 
-        weather.appendChild(weatherOfDay);
+        weatherContainer.appendChild(weatherOfDay);
 
     })
     .catch((error) => {
         console.error("error", error);
     });
-});
 
-
-
-
-
-
-const weatherFiveDays = document.getElementById('weatherFIveDays');
-
-sendBtn.addEventListener("click", () => {
-    let city = inputTxt.value;
     fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric&lang=fr`)
     .then((response) => response.json())
     .then((data) => {
         console.log(data)
-        for (i = 7 ; i<40; i+=8) {
+
+        let weatherFIveDays = document.createElement('div');
+        weatherFIveDays.classList.add('weatherFIveDays');
+
+        for (i = 8 ; i<40; i+=8) {
 
             const temperature = document.createElement("p");
             temperature.classList.add('temperature');
@@ -83,7 +83,9 @@ sendBtn.addEventListener("click", () => {
             const day = document.createElement("p");
             day.classList.add('day');
             let time = data.list[i].dt_txt;
-            day.textContent = time;
+            let options = {weekday: "long"};
+            let dayWeek = new Intl.DateTimeFormat("fr-FR", options).format(new Date(time));
+            day.textContent = dayWeek;
     
             const icon = document.createElement("img");
             let imgIcon = data.list[i].weather[0].icon;
@@ -98,7 +100,10 @@ sendBtn.addEventListener("click", () => {
             daily.appendChild(icon);
 
 
-            weatherFiveDays.appendChild(daily);
+            weatherFIveDays.appendChild(daily);
+            weatherContainer.appendChild(weatherFIveDays);
+
+            weather.appendChild(weatherContainer);
         }
     
 
