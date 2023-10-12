@@ -1,19 +1,23 @@
-const apiKey = "8ea7f0a4d42086c0871ea1344169014e";
-const weather = document.getElementById('weatherMore');
-let inputTxt = document.getElementById('city')
-const sendBtn = document.querySelector(".send");
 
+//focntion card(city) qui crée et affiche les cartes météo en utilisant l'API
+export function card (city) {
 
-sendBtn.addEventListener("click", () => {
-    let city = inputTxt.value;
-
+    const apiKey = "8ea7f0a4d42086c0871ea1344169014e";
+    const imgKey = "qZ4WLOr42wCss-VRcAc-3qJN18IFZUNeGdKTPXS5m-8";
+    
+    //récupérer l'élément avec son ID
+    const weather = document.getElementById('weatherMore');
     const weatherContainer = document.createElement('div');
     weatherContainer.classList.add('weatherContainer');
 
+
+    //effectuer une requête à l4API OpenWeatherMap pour obtenir les données météo actuelles
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=fr`)
     .then((response) => response.json())
     .then((data) => {
 
+
+        //créer et peupler les éléments html poour afficher les données météo
         let weatherOfDay = document.createElement("div")
         weatherOfDay.classList.add('weatherOfDay');
 
@@ -48,8 +52,22 @@ sendBtn.addEventListener("click", () => {
 
         icon.setAttribute('src', "https://openweathermap.org/img/w/" +imgIcon + ".png");
 
-     
 
+
+        //effectuer une requête à l4API Unsplash pour obtenir une image liée à la ville 
+        fetch(`https://api.unsplash.com/search/photos?page=1&per_page=1&query=${city}&client_id=${imgKey}`)
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data)
+
+                let myImg = data.results[0].urls.small;
+                weatherOfDay.style.backgroundImage= `url(${myImg})`;
+
+
+        });
+
+
+        //ajouter les éléments à la page
         weatherOfDay.appendChild(cityName);
         weatherOfDay.appendChild(icon);
         weatherOfDay.appendChild(temperature);
@@ -61,32 +79,37 @@ sendBtn.addEventListener("click", () => {
         weatherContainer.appendChild(weatherOfDay);
 
     })
+
+    //gérer les erreurs
     .catch((error) => {
         console.error("error", error);
     });
 
+
+    //effectuer une requête à l'API OpenWeatherMap pour obtenir les prévisions météo
     fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric&lang=fr`)
     .then((response) => response.json())
     .then((data) => {
-        console.log(data)
 
+
+        //créer et afficher les prévisions pour 4 jours
         let weatherFIveDays = document.createElement('div');
         weatherFIveDays.classList.add('weatherFIveDays');
-
-        for (i = 8 ; i<40; i+=8) {
+        //avce l'app on a données toutes les 3h, on a la météo à 0h avce le premier fetch. du coup on commence pas à i=0 mais a i=8 et on ajoute à chaque fois 8 pour être le jour d'après
+        for (let i = 8 ; i<40; i+=8) {
 
             const temperature = document.createElement("p");
             temperature.classList.add('temperature');
             let temp = data.list[i].main.temp;
             temperature.textContent = `${temp}°`;
-    
+
             const day = document.createElement("p");
             day.classList.add('day');
             let time = data.list[i].dt_txt;
             let options = {weekday: "long"};
             let dayWeek = new Intl.DateTimeFormat("fr-FR", options).format(new Date(time));
             day.textContent = dayWeek;
-    
+
             const icon = document.createElement("img");
             let imgIcon = data.list[i].weather[0].icon;
             icon.setAttribute('src', "https://openweathermap.org/img/w/" +imgIcon + ".png");
@@ -105,10 +128,14 @@ sendBtn.addEventListener("click", () => {
 
             weather.appendChild(weatherContainer);
         }
-    
+
 
     })
+
+    //gérer les erreurs
     .catch((error) => {
         console.error("error", error);
     });
-});
+
+}
+   

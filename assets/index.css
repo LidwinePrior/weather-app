@@ -350,6 +350,15 @@ body .title {
   font-size: 2em;
 }
 
+.weatherOfDay {
+  color: black;
+  -webkit-text-stroke-color: black;
+  -webkit-text-stroke-width: 1px;
+  text-shadow: 20px 5px 15px white;
+  font-size: 1.2em;
+  text-transform: capitalize;
+}
+
 button {
   outline: none;
   cursor: pointer;
@@ -426,8 +435,6 @@ header {
   justify-content: center;
 }
 #weatherMore .weatherContainer {
-  background: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 20px;
   height: 500px;
@@ -436,15 +443,29 @@ header {
   flex-direction: column;
   justify-content: space-between;
   margin: 10px;
+  position: relative;
+  overflow: hidden;
 }
 #weatherMore .weatherContainer .weatherOfDay {
+  background-size: cover;
+  background-repeat: no-repeat;
   width: 100%;
-  height: 50%;
+  height: 70%;
   display: grid;
   grid-template-columns: 1fr 1fr;
   -moz-column-gap: 10px;
        column-gap: 10px;
   text-align: center;
+  position: relative;
+}
+#weatherMore .weatherContainer .weatherOfDay::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  content: "";
+  background-color: rgba(169, 201, 255, 0.25);
 }
 #weatherMore .weatherContainer .weatherOfDay img {
   width: 25%;
