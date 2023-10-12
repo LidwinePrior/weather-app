@@ -1,7 +1,10 @@
+
 //import de la fonction onload depuis le localStorage.js
 import { onLoad } from "./localStorage.js";
 //import de la fonction card depuis createCard.js
 import { card } from "./createCard.js";
+
+
 
 
 
