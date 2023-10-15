@@ -6,3 +6,27 @@ body {
     background-size: cover;
     background-attachment: fixed;
 }
+
+.default {
+    background-image: linear-gradient(to top, #FFBBEC, #A9C9FF);
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.sunny {
+    background-image: linear-gradient(to top, #FBAB7E, #F7CE68);
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.cloudy {
+    background-image: linear-gradient(to top, #fdfbfb, #ebedee);
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.rainy {
+    background-image: linear-gradient(to top, #cfd9df, #e2ebf0);
+    background-size: cover;
+    background-attachment: fixed;
+}

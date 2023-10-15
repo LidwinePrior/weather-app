@@ -1,3 +1,5 @@
+import { background } from "./background.js";  
+
 
 //focntion card(city) qui crée et affiche les cartes météo en utilisant l'API
 export function card (city) {
@@ -46,13 +48,17 @@ export function card (city) {
         description.classList.add('description');
         let desc = data.weather[0].description;
         description.textContent = desc;
+        console.log(desc);
+
+        background(desc);
+        console.log(background);   //ne fonctionne pas pour le changement de couleur en fonction de la description de la météo
 
         const icon = document.createElement("img");
         let imgIcon = data.weather[0].icon;
 
         icon.setAttribute('src', "https://openweathermap.org/img/w/" +imgIcon + ".png");
 
-
+  
 
         //effectuer une requête à l4API Unsplash pour obtenir une image liée à la ville 
         fetch(`https://api.unsplash.com/search/photos?page=1&per_page=1&query=${city}&client_id=${imgKey}`)
