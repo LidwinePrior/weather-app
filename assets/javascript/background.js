@@ -6,7 +6,7 @@ export function background (desc) {
     console.log(bodyClass)
     
 
-    if(desc.includes("soleil") || desc.includes("ciel dégagé")) {
+    if(desc.includes("soleil") || desc.includes("dégagé")) {
         bodyClass = "sunny";
     } else if (desc.includes("nuageux") || desc.includes("couvert")) {
         bodyClass = "cloudy";

@@ -417,11 +417,24 @@ body {
 
 body {
   box-sizing: content-box;
-  background: #A9C9FF;
-  background: -webkit-linear-gradient(to top, #FFBBEC, #A9C9FF);
-  background-image: linear-gradient(to top, #FFBBEC, #A9C9FF);
   background-size: cover;
   background-attachment: fixed;
+}
+
+.default {
+  background-image: linear-gradient(to top, #FFBBEC, #A9C9FF);
+}
+
+.sunny {
+  background-image: linear-gradient(to top, #FBAB7E, #F7CE68);
+}
+
+.cloudy {
+  background-image: linear-gradient(to top, #fdfbfb, #ebedee);
+}
+
+.rainy {
+  background-image: linear-gradient(to top, #cfd9df, #e2ebf0);
 }
 
 header {
