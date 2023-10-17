@@ -3,7 +3,7 @@
 
 To build a small application who will display the weather for the next 5 days.
 
-[Weather-App](https://github.com/LidwinePrior/weather-app)
+[Weather-App](https://lidwineprior.github.io/weather-app/)
 
 
 ## Objectives
